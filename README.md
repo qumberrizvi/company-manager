@@ -33,6 +33,7 @@ When using Docker configuration, run the following to start MySQL server,
  NestJS backend, run migrations, populate the users table and start the app:
 
 ```bash
+$ cp .env.docker.example .env
 $ docker compose up --build
 ```
 

@@ -24,14 +24,14 @@ services:
       - ${PORT}
       - ${DEBUGGER_PORT}
     env_file:
-      - .env.docker
+      - .env
 
   database:
     container_name: ${DATABASE_HOST}
     image: mysql
     restart: always
     env_file:
-      - .env.docker
+      - .env
     environment:
       MYSQL_DATABASE: ${DATABASE_NAME}
       MYSQL_USER: ${DATABASE_USER}

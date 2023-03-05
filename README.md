@@ -4,6 +4,12 @@
 
 APIs written in NestJS with Express and Typescript
 
+## Demo Videos
+
+- [Setup and overview](https://www.loom.com/share/d02f72857ab148448a7cfd21385921a3)
+- [Endpoints and auth](https://www.loom.com/share/b0d62e95a86542b3a15600f577c8ba1c)
+- [Code overview](https://www.loom.com/share/f03e96a84fac4770af77366e6e1cf3ec)
+
 ## Prerequisites
 
 - Node >= v18.xx

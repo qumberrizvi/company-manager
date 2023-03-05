@@ -1,5 +1,5 @@
 import { Controller, Post, Request, UseGuards } from '@nestjs/common';
-import { ApiBody, ApiTags } from '@nestjs/swagger';
+import { ApiBody, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { LoginDto } from './dto/login.dto';
 import { LocalAuthGuard } from './guards/local-auth.guard';
 import { AuthService } from './auth.service';
@@ -9,11 +9,12 @@ import { AuthService } from './auth.service';
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
+  @Post('login')
   @UseGuards(LocalAuthGuard)
   @ApiBody({
     type: LoginDto,
   })
-  @Post('login')
+  @ApiOperation({ summary: 'Login with read or read-write scopes' })
   async login(@Request() request) {
     return this.authService.login(request.user);
   }

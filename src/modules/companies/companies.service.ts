@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { CreateCompanyDto } from './dto/create-company.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Company } from './entities/company.entity';
-import { Repository } from 'typeorm';
+import { Like, Repository } from 'typeorm';
 import {
   IPaginationOptions,
   paginate,
@@ -25,6 +25,17 @@ export class CompaniesService {
   async findAll(options: IPaginationOptions): Promise<Pagination<Company>> {
     return paginate<Company>(this.repository, options, {
       relations: ['teams'],
+    });
+  }
+
+  async findByName(
+    name: string,
+    options: IPaginationOptions,
+  ): Promise<Pagination<Company>> {
+    return paginate<Company>(this.repository, options, {
+      where: {
+        name: Like(`%${name}%`),
+      },
     });
   }
 

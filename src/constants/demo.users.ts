@@ -6,13 +6,13 @@ export const demoUsers = [
     lastName: 'Doe',
     email: 'john@mail.com',
     password: 'john@123',
-    ability: Ability.READ_WRITE,
+    ability: Ability.READ,
   },
   {
     firstName: 'Qumber',
     lastName: 'Rizvi',
     email: 'qumber@mail.com',
     password: 'qumber@123',
-    ability: Ability.READ,
+    ability: Ability.READ_WRITE,
   },
 ];

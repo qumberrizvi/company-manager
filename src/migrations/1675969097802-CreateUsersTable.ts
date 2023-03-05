@@ -1,4 +1,5 @@
 import { MigrationInterface, QueryRunner, Table, TableColumn } from 'typeorm';
+import { Ability } from '../enums/ability.enum';
 
 export class CreateUsersTable1675969097802 implements MigrationInterface {
   private table = 'users';
@@ -34,6 +35,12 @@ export class CreateUsersTable1675969097802 implements MigrationInterface {
             name: 'password',
             type: 'varchar',
             isNullable: false,
+          }),
+          new TableColumn({
+            name: 'ability',
+            type: 'enum',
+            enum: [Ability.READ, Ability.READ_WRITE],
+            default: `'${Ability.READ}'`,
           }),
           new TableColumn({
             name: 'created_at',

@@ -6,6 +6,7 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
+import { Ability } from '../../../enums/ability.enum';
 
 @Entity('users')
 export class User extends BaseEntity {
@@ -23,6 +24,9 @@ export class User extends BaseEntity {
 
   @Column()
   password: string;
+
+  @Column({ enum: [Ability.READ, Ability.READ_WRITE], default: Ability.READ })
+  ability: string;
 
   @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;

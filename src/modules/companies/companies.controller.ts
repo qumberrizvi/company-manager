@@ -1,19 +1,18 @@
 import {
-  Controller,
-  Get,
-  Post,
   Body,
-  Param,
-  UseGuards,
-  Query,
+  Controller,
   DefaultValuePipe,
+  Get,
+  Param,
   ParseIntPipe,
+  Post,
+  Query,
+  UseGuards,
 } from '@nestjs/common';
 import { CompaniesService } from './companies.service';
 import { CreateCompanyDto } from './dto/create-company.dto';
 import {
   ApiBearerAuth,
-  ApiOkResponse,
   ApiTags,
   ApiUnauthorizedResponse,
 } from '@nestjs/swagger';
@@ -21,6 +20,9 @@ import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { ApiOkPaginatedResponse } from '../../decorators/api-ok-paginated-response.decorator';
 import { Company } from './entities/company.entity';
 import { Pagination } from 'nestjs-typeorm-paginate';
+import { Abilities } from '../../decorators/abilities.decorator';
+import { Ability } from '../../enums/ability.enum';
+import { AbilityGuard } from '../auth/guards/ability.guard';
 
 @ApiTags('Company')
 @Controller('companies')
@@ -33,6 +35,8 @@ export class CompaniesController {
   constructor(private readonly companiesService: CompaniesService) {}
 
   @Post()
+  @Abilities(Ability.READ_WRITE)
+  @UseGuards(AbilityGuard)
   create(@Body() createCompanyDto: CreateCompanyDto): Promise<Company> {
     return this.companiesService.create(createCompanyDto);
   }

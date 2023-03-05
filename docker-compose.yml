@@ -9,28 +9,29 @@ services:
       target: development
       args:
         PORT: ${PORT}
+        DEBUGGER_PORT: ${DEBUGGER_PORT}
     volumes:
       - .:/usr/src/app/company-app
       - /usr/src/app/company-app/node_modules
     ports:
       - ${PORT}:${PORT}
-      - "9229:9229"
+      - ${DEBUGGER_PORT}:${DEBUGGER_PORT}
     links:
       - database:${DATABASE_HOST}
     depends_on:
       - database
     expose:
-      - 3000
-      - 9229
+      - ${PORT}
+      - ${DEBUGGER_PORT}
     env_file:
-      - .env
+      - .env.docker
 
   database:
     container_name: ${DATABASE_HOST}
     image: mysql
     restart: always
     env_file:
-      - .env
+      - .env.docker
     environment:
       MYSQL_DATABASE: ${DATABASE_NAME}
       MYSQL_USER: ${DATABASE_USER}

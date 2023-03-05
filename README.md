@@ -73,3 +73,16 @@ $ npm run start:prod
 ```
 
 </details>
+
+
+## Demo Users for Authentication
+
+### 1. User with `READ` and `WRITE` access
+
+    email: qumber@mail.com
+    password: qumber@123
+
+### 2. User with `READ` only access
+
+    email: john@mail.com
+    password: john@123

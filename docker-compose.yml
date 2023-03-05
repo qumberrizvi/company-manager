@@ -7,11 +7,13 @@ services:
       context: .
       dockerfile: ./Dockerfile
       target: development
+      args:
+        PORT: ${PORT}
     volumes:
       - .:/usr/src/app/company-app
       - /usr/src/app/company-app/node_modules
     ports:
-      - "3000:3000"
+      - ${PORT}:${PORT}
       - "9229:9229"
     links:
       - database:${DATABASE_HOST}

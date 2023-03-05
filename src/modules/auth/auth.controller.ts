@@ -14,7 +14,22 @@ export class AuthController {
   @ApiBody({
     type: LoginDto,
   })
-  @ApiOperation({ summary: 'Login with read or read-write scopes' })
+  @ApiOperation({
+    summary: 'Login with read or read-write scopes',
+    description:
+      'For <strong>write</strong> access, login using:' +
+      '<br/> ' +
+      'email: <strong>qumber@mail.com</strong>' +
+      '<br/>' +
+      'password: <strong>qumber@123</strong>' +
+      '<br/>' +
+      '<br/>' +
+      'For <strong>read</strong> only access, login using:' +
+      '<br/> ' +
+      'email: <strong>john@mail.com</strong>' +
+      '<br/>' +
+      'password: <strong>john@123</strong>',
+  })
   async login(@Request() request) {
     return this.authService.login(request.user);
   }

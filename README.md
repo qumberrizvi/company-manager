@@ -9,25 +9,54 @@ APIs written in NestJS with Express and Typescript
 - Node >= v18.xx
 - MySQL >= 8
 
+OR
+
+- Docker
+- Docker compose
+
 ## Installation
+
+<details>
+    <summary>Using Docker configuration</summary>
+
+When using Docker configuration, run the following to start MySQL server,
+ NestJS backend, run migrations, populate the users table and start the app:
+
+```bash
+$ docker compose up --build
+```
+
+</details>
+
+<details>
+    <summary>Manually (without Docker)</summary>
+
+Follow the following steps to set up the project manually:
+
+### Install dependencies
 
 ```bash
 $ npm install
 ```
 
-## Create .env file
+### Create .env file
 
 ```bash
 $ cp .env.example .env
 ```
 
-# Run TypeORM migrations
+Change MySQL credentials in the `.env` file as needed.
+
+### Run TypeORM migrations
+
+Ensure that you have a MySQL server running and the `.env` file has its details.
+Then run the following:
 
 ```bash
-$ npm run migrate:up
+$ npm run migration:run
 ```
 
-## Running the app
+### Running the app
 
 ```bash
 # development
@@ -36,19 +65,11 @@ $ npm run start
 # watch mode
 $ npm run start:dev
 
+# watch mode with debugger attached
+$ npm run start:debug
+
 # production mode
 $ npm run start:prod
 ```
 
-## Test
-
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
-```
+</details>
